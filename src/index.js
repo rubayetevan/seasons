@@ -7,15 +7,23 @@ const root = ReactDOM.createRoot(el);
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lat: null };
+    this.state = { lat: null, lon: null };
     window.navigator.geolocation.getCurrentPosition(
-      (position) => this.setState({ lat: position.coords.latitude }),
+      (position) =>
+        this.setState({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        }),
       (error) => console.error(error)
     );
   }
 
   render() {
-    return <div>latitude: {this.state.lat}</div>;
+    return (
+      <div>
+        latitude: {this.state.lat} longitude: {this.state.lon}
+      </div>
+    );
   }
 }
 
